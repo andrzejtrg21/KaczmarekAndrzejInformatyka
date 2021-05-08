@@ -1,0 +1,22 @@
+a=5
+
+b=11
+
+suma=0
+
+i=0
+
+A=a
+
+while A <= b:
+    while A % 2 == 1:
+        suma= suma + A
+       
+        A = A + 1
+     
+        i = i + 1
+      
+    A = A + 1
+  
+wynik = suma / i
+print('wynik', wynik)
