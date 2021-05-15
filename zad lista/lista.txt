@@ -4,7 +4,7 @@ a = int(n)
 lista = []
 
 for i in range(a):
-    b = input ("podaj daną")
+    b = input ("podaj daną  :")
  
     lista.append(b)
 
