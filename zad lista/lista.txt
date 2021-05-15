@@ -1,0 +1,12 @@
+
+n = input("wprowadź liczbę elementóW w liscie i nacisnij Enter ")
+a = int(n)
+lista = []
+
+for i in range(a):
+    b = input ("podaj daną")
+ 
+    lista.append(b)
+
+print("lista : ", lista)
+   
