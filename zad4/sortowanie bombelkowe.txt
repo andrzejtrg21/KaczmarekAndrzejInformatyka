@@ -14,4 +14,4 @@ def sortowanie_babelkowe(lista):
         
     return lista
         
-sortowanie_babelkowe([5,6,-1,0])
+sortowanie_babelkowe([8,-8,-1,0,7,11])
