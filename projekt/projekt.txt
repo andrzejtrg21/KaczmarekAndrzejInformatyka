@@ -1,0 +1,39 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun May 23 18:05:36 2021
+
+@author: andrz
+
+tworzenie pliku exel 
+
+"""
+
+from openpyxl import Workbook # otwacie biblotek 
+ 
+wb = Workbook() 
+ 
+sheet = wb.active # aktywny arkusz 
+
+sheet["A1"] = 'dane' # dodanie opisu w A1 w exel
+
+n = input("wprowadź liczbę elementóW w liscie i nacisnij Enter ") # operator okresla liczbe danych 
+
+a = int(n)
+
+lista = []
+
+for i in range(a):
+    
+    print("podaj daną", i+1)
+    
+    b = input ()
+   
+    lista.append(b)
+
+print("lista : ", lista)  #wydrukowanie wprowdzonych danych przez operatora 
+
+sheet["A2"] = 'lista' # dodanie drugiego opisu a2
+
+sheet.append(lista) # dodanie listy w ciągu a3 b3 itp 
+
+wb.save("test.xlsx") # zapis pliku na dysku
