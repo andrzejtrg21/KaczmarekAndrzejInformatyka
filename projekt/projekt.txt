@@ -10,6 +10,8 @@ tworzenie pliku exel
 
 from openpyxl import Workbook # otwacie biblotek 
  
+from openpyxl.drawing.image import Image
+
 wb = Workbook() 
  
 sheet = wb.active # aktywny arkusz 
@@ -22,18 +24,59 @@ a = int(n)
 
 lista = []
 
+nazwa =[]
+
 for i in range(a):
     
     print("podaj daną", i+1)
     
     b = input ()
+ 
+    print("podaj nazwe", i+1)
+    
+    q = input ()
+  
    
     lista.append(b)
+    
+    nazwa.append(q)
+    
+    
 
-print("lista : ", lista)  #wydrukowanie wprowdzonych danych przez operatora 
 
-sheet["A2"] = 'lista' # dodanie drugiego opisu a2
+pary = zip(nazwa, lista)  #sparowanie dany do sortowania 
+slownik = dict(pary)  # utworzenie słownika 
 
-sheet.append(lista) # dodanie listy w ciągu a3 b3 itp 
+
+S = sorted(slownik.items(), key=lambda x: x[1]) # powstaje posortwania lista 
+S1 = dict(S) # ponownie słownik 
+
+wada = str(S1.keys()) # koljeno wady od najmnieszej wartosci 
+nazwa2 = S1.keys()
+wartosc = str(S1.values()) # odpowiednie wartosci 
+lista2 = S1.values()
+
+sheet["A3"] = wada # lista wad
+sheet["A4"] = wartosc # lista wartosc odpowidnych do wad
+
+# utworzenie wykresu  obu list i zapis do jpg 
+import matplotlib.pyplot as pyplot #bibloteka do wykresu 
+
+pyplot.figure(figsize=((20,16)))
+
+pyplot.bar(nazwa2, lista2, label = 'Bar 2', color = 'red',  width = 1)
+
+pyplot.xlabel('nazwa', fontsize = 16)
+
+
+pyplot.ylabel('lista', fontsize = 16)
+
+
+pyplot.savefig('test.png') #wykres jpeg
+
+pyplot.show()
+
+img = Image('test.png')
+sheet.add_image(img, 'D1')
 
 wb.save("test.xlsx") # zapis pliku na dysku
