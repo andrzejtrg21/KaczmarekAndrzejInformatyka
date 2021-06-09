@@ -16,9 +16,11 @@ wb = Workbook()
  
 sheet = wb.active # aktywny arkusz 
 
-sheet["A1"] = 'dane' # dodanie opisu w A1 w exel
+sheet["A1"] = 'raport ilosci wad'
 
-n = input("wprowadź liczbę elementóW w liscie i nacisnij Enter ") # operator okresla liczbe danych 
+sheet["A2"] = 'dane' # dodanie opisu w A1 w exel
+
+n = input("wprowadź ilosc wad w zestawieniu w liscie i nacisnij Enter ") # operator okresla liczbe danych 
 
 a = int(n)
 
@@ -28,11 +30,11 @@ nazwa =[]
 
 for i in range(a):
     
-    print("podaj daną", i+1)
+    print("podaj ilosc wad", i+1)
     
     b = input ()
  
-    print("podaj nazwe", i+1)
+    print("podaj nazwe wady", i+1)
     
     q = input ()
   
@@ -48,9 +50,9 @@ pary = zip(nazwa, lista)  #sparowanie dany do sortowania
 slownik = dict(pary)  # utworzenie słownika 
 
 
-S = sorted(slownik.items(), key=lambda x: x[1]) # powstaje posortwania lista 
+S = sorted(slownik.items(), key=lambda x: x[0]) # sortowie słownika - powstaie lista?
 S1 = dict(S) # ponownie słownik 
-
+print('s1', S1)
 wada = str(S1.keys()) # koljeno wady od najmnieszej wartosci 
 nazwa2 = S1.keys()
 wartosc = str(S1.values()) # odpowiednie wartosci 
@@ -66,17 +68,16 @@ pyplot.figure(figsize=((20,16)))
 
 pyplot.bar(nazwa2, lista2, label = 'Bar 2', color = 'red',  width = 1)
 
-pyplot.xlabel('nazwa', fontsize = 16)
+pyplot.xlabel('nazwa wady', fontsize = 16)
 
 
-pyplot.ylabel('lista', fontsize = 16)
+pyplot.ylabel('ilosc wad', fontsize = 16)
 
 
-pyplot.savefig('test.png') #wykres jpeg
+pyplot.savefig('wykres.png') #wykres jpeg
 
-pyplot.show()
 
-img = Image('test.png')
+img = Image('wykres.png')
 sheet.add_image(img, 'D1')
 
-wb.save("test.xlsx") # zapis pliku na dysku
+wb.save("raport.xlsx") # zapis pliku na dysku
