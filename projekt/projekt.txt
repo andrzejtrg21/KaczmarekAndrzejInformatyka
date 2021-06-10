@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun May 23 18:05:36 2021
-
-@author: andrz
-
-tworzenie pliku exel 
-
-"""
 
 from openpyxl import Workbook # otwacie biblotek 
  
@@ -32,7 +23,8 @@ for i in range(a):
     
     print("podaj ilosc wad", i+1)
     
-    b = input ()
+    B = input ()
+    b = int(B)
  
     print("podaj nazwe wady", i+1)
     
@@ -46,11 +38,14 @@ for i in range(a):
     
 
 
-pary = zip(nazwa, lista)  #sparowanie dany do sortowania 
+pary = zip(lista, nazwa)  #sparowanie dany do sortowania 
 slownik = dict(pary)  # utworzenie słownika 
 
 
-S = sorted(slownik.items(), key=lambda x: x[0]) # sortowie słownika - powstaie lista?
+
+S = sorted(slownik.items()) #sortowanie słownika zawartosci po kluczu 
+
+
 S1 = dict(S) # ponownie słownik 
 print('s1', S1)
 wada = str(S1.keys()) # koljeno wady od najmnieszej wartosci 
@@ -64,14 +59,14 @@ sheet["A4"] = wartosc # lista wartosc odpowidnych do wad
 # utworzenie wykresu  obu list i zapis do jpg 
 import matplotlib.pyplot as pyplot #bibloteka do wykresu 
 
-pyplot.figure(figsize=((20,16)))
+pyplot.figure(figsize=((10,8)))
 
-pyplot.bar(nazwa2, lista2, label = 'Bar 2', color = 'red',  width = 1)
-
-pyplot.xlabel('nazwa wady', fontsize = 16)
-
+pyplot.bar(lista2, nazwa2, label = 'Bar 2', color = 'red',  width = 1, )
 
 pyplot.ylabel('ilosc wad', fontsize = 16)
+
+
+pyplot.xlabel('nazwa wad', fontsize = 16)
 
 
 pyplot.savefig('wykres.png') #wykres jpeg
@@ -81,3 +76,13 @@ img = Image('wykres.png')
 sheet.add_image(img, 'D1')
 
 wb.save("raport.xlsx") # zapis pliku na dysku
+
+
+"""
+autorzy  
+Kaczmarek Andrzej 
+Karabin Kamil
+Korona Marcin
+Kulinicz Dawid 
+
+"""
